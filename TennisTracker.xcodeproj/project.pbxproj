@@ -6,14 +6,41 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXCopyFilesBuildPhase section */
+		224DBD90304916DE008B07E1 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		22EFBC113012A07D00C53F8F /* edfadsf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = edfadsf.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		224DBD81304916DB008B07E1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		22EFBC113012A07D00C53F8F /* TennisTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TennisTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2293B33B306377FE00F833B5 /* Exceptions for "TennisTracker" folder in "TennisTracker" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 22EFBC103012A07D00C53F8F /* TennisTracker */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		22EFBC133012A07D00C53F8F /* edfadsf */ = {
+		22EFBC133012A07D00C53F8F /* TennisTracker */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = edfadsf;
+			exceptions = (
+				2293B33B306377FE00F833B5 /* Exceptions for "TennisTracker" folder in "TennisTracker" target */,
+			);
+			path = TennisTracker;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -29,10 +56,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		224DBD7E304916DB008B07E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				224DBD81304916DB008B07E1 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		22EFBC083012A07D00C53F8F = {
 			isa = PBXGroup;
 			children = (
-				22EFBC133012A07D00C53F8F /* edfadsf */,
+				22EFBC133012A07D00C53F8F /* TennisTracker */,
+				224DBD7E304916DB008B07E1 /* Frameworks */,
 				22EFBC123012A07D00C53F8F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -40,7 +76,7 @@
 		22EFBC123012A07D00C53F8F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				22EFBC113012A07D00C53F8F /* edfadsf.app */,
+				22EFBC113012A07D00C53F8F /* TennisTracker.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,26 +84,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		22EFBC103012A07D00C53F8F /* edfadsf */ = {
+		22EFBC103012A07D00C53F8F /* TennisTracker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 22EFBC1C3012A07E00C53F8F /* Build configuration list for PBXNativeTarget "edfadsf" */;
+			buildConfigurationList = 22EFBC1C3012A07E00C53F8F /* Build configuration list for PBXNativeTarget "TennisTracker" */;
 			buildPhases = (
 				22EFBC0D3012A07D00C53F8F /* Sources */,
 				22EFBC0E3012A07D00C53F8F /* Frameworks */,
 				22EFBC0F3012A07D00C53F8F /* Resources */,
+				224DBD90304916DE008B07E1 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				22EFBC133012A07D00C53F8F /* edfadsf */,
+				22EFBC133012A07D00C53F8F /* TennisTracker */,
 			);
-			name = edfadsf;
+			name = TennisTracker;
 			packageProductDependencies = (
 			);
 			productName = edfadsf;
-			productReference = 22EFBC113012A07D00C53F8F /* edfadsf.app */;
+			productReference = 22EFBC113012A07D00C53F8F /* TennisTracker.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -85,7 +122,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 22EFBC0C3012A07D00C53F8F /* Build configuration list for PBXProject "edfadsf" */;
+			buildConfigurationList = 22EFBC0C3012A07D00C53F8F /* Build configuration list for PBXProject "TennisTracker" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -99,7 +136,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				22EFBC103012A07D00C53F8F /* edfadsf */,
+				22EFBC103012A07D00C53F8F /* TennisTracker */,
 			);
 		};
 /* End PBXProject section */
@@ -250,6 +287,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TennisTracker/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -292,6 +330,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TennisTracker/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -326,7 +365,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		22EFBC0C3012A07D00C53F8F /* Build configuration list for PBXProject "edfadsf" */ = {
+		22EFBC0C3012A07D00C53F8F /* Build configuration list for PBXProject "TennisTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				22EFBC1A3012A07E00C53F8F /* Debug */,
@@ -335,7 +374,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		22EFBC1C3012A07E00C53F8F /* Build configuration list for PBXNativeTarget "edfadsf" */ = {
+		22EFBC1C3012A07E00C53F8F /* Build configuration list for PBXNativeTarget "TennisTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				22EFBC1D3012A07E00C53F8F /* Debug */,
