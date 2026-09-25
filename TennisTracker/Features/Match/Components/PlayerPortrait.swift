@@ -2,7 +2,16 @@
 //  PlayerPortrait.swift
 //  TennisTracker
 //
-//  Extracted from MatchSheetContent.swift.
+//  Editing UX reworked to be implicit rather than modal:
+//  - No more separate Edit button / checkmark. Tap the name itself to
+//    edit it — a small pencil hint shows it's tappable when the name
+//    can be changed.
+//  - Editing commits itself: it exits automatically the instant focus
+//    is lost, whatever caused that (tap elsewhere, submit, keyboard
+//    dismissed, match started). There's no separate "confirm" step
+//    because playerName is a live binding — there's nothing to confirm.
+//  - Text/TextField swap is animated so it doesn't feel like a mode
+//    switch, closer to the field just becoming interactive in place.
 //
 
 import SwiftUI
@@ -11,15 +20,11 @@ struct PlayerPortrait: View {
 	@Binding var stackHeight: CGFloat
 	@Binding var isMatchStarted: Bool
 	
-	var player: String
 	var image: String
-	@State var playerName: String
-	@State var isEditing: Bool = false
-	
-	func getFirstName(from fullName: String) -> String {
-		// Splits by spaces and takes the first word found
-		return fullName.split(separator: " ").first?.description ?? fullName + "M."
-	}
+	@Binding var playerName: String
+	var defaultName: String
+	@State private var isEditing: Bool = false
+	@FocusState private var isNameFieldFocused: Bool
 	
 	var body: some View {
 		VStack(spacing: 4) {
@@ -27,44 +32,45 @@ struct PlayerPortrait: View {
 				.resizable()
 				.scaledToFit()
 				.frame(width: 144, height: 144)
-			HStack {
-				if (!isEditing) {
-					Text(getFirstName(from: player))
-						.font(.title3)
-						.fontWeight(.semibold)
-						.multilineTextAlignment(.center)
-					if(!isMatchStarted) {
-						Button {
-							isEditing = true
-						} label: {
-							Label("Edit", systemImage: "pencil")
-								.labelStyle(.iconOnly)
-								.tint(.orange)
-								.font(.title3)
-						}
-					}
-				} else {
-					TextField("\(getFirstName(from: player))", text: $playerName)
-						.background(playerName.isEmpty ? AnyShapeStyle(Color.gray.opacity(0.1)) : AnyShapeStyle(Color.clear))
-						.cornerRadius(12)
-						.font(.title3)
-						.fontWeight(.semibold)
-						.multilineTextAlignment(.center)
-						.allowsHitTesting(!isMatchStarted)
-				}
+			
+			Group {
+				TextField("", text: $playerName)
+					.focused($isNameFieldFocused)
+					.font(.title3)
+					.fontWeight(.semibold)
+					.multilineTextAlignment(.center)
+					.submitLabel(.done)
+					.onSubmit { isEditing = false }
+					.allowsHitTesting(isEditing)
 			}
 			.padding(.horizontal)
 			.padding(.vertical, 8)
+			.contentShape(.rect)
+			.onTapGesture {
+				guard !isMatchStarted else { return }
+				isEditing = true
+				isNameFieldFocused = true
+			}
+			.animation(.snappy(duration: 0.25), value: isEditing)
 		}
 		.background {
 			GeometryReader { geo in
 				Color.clear
-					.onAppear {
-						stackHeight = geo.size.height
-					}
+					.onAppear { stackHeight = geo.size.height }
 					.onChange(of: geo.size.height) { _, newHeight in
 						stackHeight = newHeight
 					}
+			}
+		}
+		.onChange(of: isNameFieldFocused) { _, focused in
+			if !focused {
+				isEditing = false
+			}
+		}
+		.onChange(of: isMatchStarted) { _, started in
+			if started {
+				isEditing = false
+				isNameFieldFocused = false
 			}
 		}
 	}

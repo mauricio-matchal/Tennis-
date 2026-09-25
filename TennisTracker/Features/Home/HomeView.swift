@@ -83,9 +83,9 @@ struct HomeView: View {
 				.background(
 						LinearGradient(
 							stops: [
-								Gradient.Stop(color: Color.accentSecondary.opacity(0.6), location: 0),
-								Gradient.Stop(color: Color.accentSecondary.opacity(0.25), location: 0.35),
-								Gradient.Stop(color: Color.accentSecondary.opacity(0.25), location: 1)
+								Gradient.Stop(color: Color.accentSecondary.opacity(0.5), location: 0),
+								Gradient.Stop(color: Color.accentSecondary.opacity(0.2), location: 0.35),
+								Gradient.Stop(color: Color.accentSecondary.opacity(0.2), location: 1)
 							],
 							startPoint: .top,
 							endPoint: .bottom
@@ -161,7 +161,7 @@ struct HomeView: View {
 								selectedSheetDetent = .medium
 								isSearchSheetPresented = true
 							} label: {
-								Label("Começar partida", systemImage: "figure.tennis")
+								Label("Começar partida", systemImage: "square.filled.and.line.vertical.and.square")
 									.labelStyle(.automatic)
 									.font(.title3)
 									.fontWeight(.medium)
