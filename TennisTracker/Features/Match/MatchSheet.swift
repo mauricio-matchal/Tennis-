@@ -1,6 +1,11 @@
+//
+//  MatchSheet.swift
+//  TennisTracker
+//
+//  Moved to Features/Match/ — this is the "Partida" screen from the planning doc.
+//
+
 import SwiftUI
-
-
 
 struct MatchSheet: View {
 	@Binding var isSearchSheetPresented: Bool

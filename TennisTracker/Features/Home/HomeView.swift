@@ -1,19 +1,14 @@
 //
-//  ContentView.swift
-//  edfadsf
+//  HomeView.swift
+//  TennisTracker
+//
+//  Renamed from ContentView.swift — this is the "Home" screen from the
+//  planning doc (recent matches, start-match entry point).
 //
 //  Created by Mauricio Matchal on 23/07/26.
 //
 
 import SwiftUI
-
-private let tennisScore: [Int: String] = [
-	0: "0",
-	1: "15",
-	2: "30",
-	3: "40",
-	4: "Set!"
-]
 
 enum TabSelection: String {
 	case home
@@ -22,135 +17,7 @@ enum TabSelection: String {
 	case startMatch
 }
 
-struct DebugVariablesView: View {
-	let selectedSheetDetent: PresentationDetent
-	let selectedTab: TabSelection
-	let isMatchStarted: Bool
-	let isSearchSheetPresented: Bool
-	
-	var body: some View {
-		List {
-			Section("Variables") {
-				LabeledContent("selectedSheetDetent") {
-					Text("")
-						.monospaced()
-				}
-				
-				LabeledContent("selectedTab") {
-					Text(selectedTab.rawValue)
-				}
-				
-				LabeledContent("isMatchStarted") {
-					Text(isMatchStarted ? "true" : "false")
-						.monospaced()
-				}
-				
-				LabeledContent("isSearchSheetPresented") {
-					Text(isSearchSheetPresented ? "true" : "false")
-						.monospaced()
-				}
-			}
-		}
-		.scrollContentBackground(.hidden)
-		.listRowBackground(Color.clear)
-	}
-}
-
-struct MatchAccessory: View {
-	@Environment(\.tabViewBottomAccessoryPlacement)
-	private var placement
-	
-	let player1Points: Int
-	let player2Points: Int
-	let matchStartDate: Date?
-	
-	var body: some View {
-		switch placement {
-		case .inline:
-			HStack(spacing: 8) {
-				Text(tennisScore[player1Points] ?? String(player1Points))
-					.fontWeight(.semibold)
-					.fontWidth(.compressed)
-					.font(.title)
-					.foregroundStyle(player1Points > player2Points ? .accentPrimary : .primary)
-				Text("M")
-					.font(.title3)
-					.fontWidth(.condensed)
-					.fontWeight(.semibold)
-					.foregroundStyle(.secondary)
-				Spacer()
-				if let startDate = matchStartDate {
-					Text(startDate, style: .timer)
-						.font(.title)
-						.fontWeight(.semibold)
-						.fontWidth(.compressed)
-				}
-				Spacer()
-				Text("A")
-					.font(.title3)
-					.fontWidth(.condensed)
-					.fontWeight(.semibold)
-					.foregroundStyle(.secondary)
-				Text(tennisScore[player2Points] ?? String(player2Points))
-					.fontWeight(.semibold)
-					.fontWidth(.compressed)
-					.font(.title)
-					.foregroundStyle(player2Points > player1Points ? .accentPrimary : .primary)
-			}
-			.padding(.horizontal, 18)
-			
-		case .expanded:
-			HStack(spacing: 0) {
-				Text(tennisScore[player1Points] ?? String(player1Points))
-					.fontWeight(.semibold)
-					.fontWidth(.compressed)
-					.font(.title)
-					.foregroundStyle(player1Points > player2Points ? .accentPrimary : .primary)
-				Image("portraitPlayer1")
-					.resizable()
-					.scaledToFit()
-					.frame(width: 44, height: 44)
-					.padding(.top, 4)
-				Text("Maurício")
-					.font(.headline)
-					.fontWidth(.condensed)
-					.foregroundStyle(.secondary)
-					.tracking(0.4)
-				
-				
-				Spacer()
-				if let startDate = matchStartDate {
-					Text(startDate, style: .timer)
-						.font(.title)
-						.fontWeight(.semibold)
-						.fontWidth(.compressed)
-				}
-				Spacer()
-				
-				Text("Alisson")
-					.font(.headline)
-					.fontWidth(.condensed)
-					.foregroundStyle(.secondary)
-					.tracking(0.4)
-				Image("portraitPlayer2")
-					.resizable()
-					.scaledToFit()
-					.frame(width: 44, height: 44)
-					.padding(.top, 4)
-				Text(tennisScore[player2Points] ?? String(player2Points))
-					.fontWeight(.semibold)
-					.fontWidth(.compressed)
-					.font(.title)
-					.foregroundStyle(player2Points > player1Points ? .accentPrimary : .primary)
-			}
-			.padding(.horizontal, 16)
-		default:
-			EmptyView()
-		}
-	}
-}
-
-struct ContentView: View {
+struct HomeView: View {
 	@State private var selectedTab: TabSelection = .home
 	@State private var isSearchSheetPresented = false
 	@State private var isMatchStarted = false
@@ -199,7 +66,7 @@ struct ContentView: View {
 							.padding(.horizontal, 12)
 						
 						VStack{
-							ForEach(matches) { match in MatchCard(match: match) }
+							ForEach(recentMatches) { match in RecentMatchCard(match: match) }
 						}
 						
 						Text("Resumos")
@@ -339,5 +206,5 @@ struct ContentView: View {
 }
 
 #Preview {
-	ContentView()
+	HomeView()
 }
